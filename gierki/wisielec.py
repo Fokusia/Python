@@ -1,5 +1,15 @@
 import string, random
 
+def get_random_word():
+    words = []
+    with open('slowa.txt', encoding="UTF8") as of:
+        lines = of.readlines()
+        for line in lines:
+            line = line.split('\n')[0]
+            words.append(line)
+    words = tuple(words)
+    return random.choice(words)
+
 def wisielec():
     def form():
         print(f"Slowo do odgadnięcia: {(' '.join(pusto)).upper()}")
@@ -36,9 +46,9 @@ def wisielec():
                 form()
         else:
             print("\n:( Ilość twoich prób dobiegła końca, przegrałeś!")
+            print(f":( Szukanym słowem było słowo {slowo.upper()}\n")
             break
             
-lista_slow = ("Banan", "Fiat", "konstantynopolitańczykowianeczka")
 lista_liter = []
 lista_znakow = ["ę", "ó", "ą", "ś", "ł", "ż", "ź", "ć", "ń"]
 for i in string.ascii_lowercase:
@@ -51,9 +61,11 @@ if wybor == "1":
         if i not in lista_znakow:
             print(":( Słowo musi składać się z samych liter!\n")
             quit()
+    for i in range(0,101):
+        print(" ")
     wisielec()
 elif wybor == "2":
-    slowo = (random.choice(lista_slow)).lower()
+    slowo = get_random_word()
     wisielec()
 else:
     print(":( Nie ma takiej opcji!\n")
