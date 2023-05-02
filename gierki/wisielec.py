@@ -2,7 +2,7 @@ import string, random
 
 def get_random_word():
     words = []
-    with open('slowa.txt', encoding="UTF8") as of:
+    with open("slowa.txt", encoding="UTF8") as of:
         lines = of.readlines()
         for line in lines:
             line = line.split('\n')[0]
