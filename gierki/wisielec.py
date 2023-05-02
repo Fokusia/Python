@@ -17,37 +17,46 @@ def wisielec():
         print(f"Ilość prób: {proba}")
     pusto = "_"*len(slowo)
     proba = 11
-    print(f"\nSlowo do odgadnięcia: {(' '.join(pusto))}\n")
+    print(f"\nPamiętaj, że zawsze możesz spróbować odgadnąć całe słowo!\nSlowo do odgadnięcia: {(' '.join(pusto))}\n")
     while "_" in pusto:
-        if proba > 0:
-            guess = input("Zgadnij litere: ").lower()[0]
-            if guess in lista_znakow:
-                if guess not in lista_liter:
-                    if guess in slowo:
-                        print(f"\n:) Zgadłeś literę: {guess.upper()}")
-                        lista_liter.append(guess)
-                        for i in range(len(slowo)):
-                            if guess in slowo[i]:
-                                pusto = pusto[:i] + guess + pusto[i+1:]
-                            if "_" not in pusto:
-                                print(f"Gratulacje! Odgadłeś słowo: {slowo.upper()}")
-                                quit()
-                        form()
-                    else:
-                        print(f"\n:( Nie zgadłeś litery: {guess.upper()}")
-                        lista_liter.append(guess)
-                        proba -= 1
-                        form()
-                else:
-                    print(f"\n:( Litera: {guess.upper()} została już przez ciebie odgadnięta!")
-                    form()
-            else:
-                print(f"\n:( Litery: {guess.upper()} nie ma w bazie!")
-                form()
-        else:
+        if proba <= 0:
             print("\n:( Ilość twoich prób dobiegła końca, przegrałeś!")
             print(f":( Szukanym słowem było słowo {slowo.upper()}\n")
             break
+        else:
+            guess = input("Zgadnij litere lub od razu całe słowo: ").lower()
+            if len(guess) >= 2:
+                if guess == slowo:
+                    print(f"\n:) Gratulacje! Odgadłeś słowo: {slowo.upper()}")
+                    quit()
+                else:
+                    print(f"\n:( Niestety nie odgadłeś słowa")
+                    proba -= 1
+                    form()
+            else:
+                if guess not in lista_znakow:
+                    print(f"\n:( Litery: {guess.upper()} nie ma w bazie!")
+                    form()
+                else:
+                    if guess in lista_liter:
+                        print(f"\n:( Litera: {guess.upper()} została już przez ciebie odgadnięta!")
+                        form()
+                    else:
+                        if guess not in slowo:
+                            print(f"\n:( Nie zgadłeś litery: {guess.upper()}")
+                            lista_liter.append(guess)
+                            proba -= 1
+                            form()
+                        else:
+                            print(f"\n:) Zgadłeś literę: {guess.upper()}")
+                            lista_liter.append(guess)
+                            for i in range(len(slowo)):
+                                if guess in slowo[i]:
+                                    pusto = pusto[:i] + guess + pusto[i+1:]
+                                if "_" not in pusto:
+                                    print(f"\n:) Gratulacje! Odgadłeś słowo: {slowo.upper()}")
+                                    quit()
+                            form()
             
 lista_liter = []
 lista_znakow = ["ę", "ó", "ą", "ś", "ł", "ż", "ź", "ć", "ń"]
