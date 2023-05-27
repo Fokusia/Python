@@ -1,4 +1,4 @@
-import numpy as np, termcolor as tc, string, os, tabulate, re
+import numpy as np, termcolor as tc, string, os, tabulate
 #Funkcja Pobierająca losowe słowo zawierające 5 liter.
 def getRandomWord(): 
     words = np.array(())
@@ -34,7 +34,7 @@ Q W E R T Y U I O P
 print (f"\n=== Zasady gry ===\n\nTwoim zadaniem jest zgadnąć losowo wygenerowane słowo.\n{tc.colored('X', 'red', attrs=['bold'])} - oznacza, że litery w ogóle nie ma w wyrazie.\n{tc.colored('X', 'yellow', attrs=['bold'])} - oznacza, że litera znajduje się w wyrazie, ale na innym miejscu.\n{tc.colored('X', 'green', attrs=['bold'])} - oznacza, że litera stoi na właściwym miejscu.\n\nDodatkowo będziesz widział jakich liter już użyłeś.\n\nW sumie tyle, powodzenia :)\n")
 while True:
     print(tabulate.tabulate(table, tablefmt="rounded_grid"), keyboard)
-    if guess != word:
+    if guess != word2:
         if tries < 6:
             guess = input("\nPodaj słowo: ").lower()
             if all(i in symbolsToUse for i in guess):
