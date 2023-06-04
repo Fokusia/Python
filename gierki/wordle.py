@@ -21,7 +21,7 @@ def wordBase():
 os.system("color")
 symbolsToUse = [i for i in string.ascii_lowercase] + ["ę", "ó", "ą", "ś", "ł", "ż", "ź", "ć", "ń"]
 wordsToUse = wordBase()
-word = getRandomWord()
+word = getRandomWord().lower()
 word2 = word
 table = np.full((6,5), " ").tolist()
 tries = 0
@@ -57,9 +57,14 @@ while True:
                                 table[tries][i] = tc.colored(guess[i].upper(), "yellow", attrs=["bold"])
                             elif wordCopy[i] == "X":
                                 table[tries][i] = tc.colored(guess[i].upper(), "green", attrs=["bold"])
-                        for i in guess:
-                            if i.upper() in keyboard:
-                                keyboard = keyboard.replace(i.upper(), tc.colored(i.upper(), "white", "on_red"))
+                        for i in range(len(guess)):
+                            print(word2)
+                            if guess[i] == word2[i]:
+                                keyboard = keyboard.replace(guess[i].upper(), tc.colored(guess[i].upper(), "white", "on_green"))
+                            elif guess[i] in word2:
+                                keyboard = keyboard.replace(guess[i].upper(), tc.colored(guess[i].upper(), "white", "on_yellow"))
+                            else:
+                                keyboard = keyboard.replace(guess[i].upper(), tc.colored(guess[i].upper(), "white", "on_red"))
                         tries += 1
                     else:
                         print("Nie ma takiego słowa w bazie słów!")
