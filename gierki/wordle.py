@@ -58,7 +58,6 @@ while True:
                             elif wordCopy[i] == "X":
                                 table[tries][i] = tc.colored(guess[i].upper(), "green", attrs=["bold"])
                         for i in range(len(guess)):
-                            print(word2)
                             if guess[i] == word2[i]:
                                 keyboard = keyboard.replace(guess[i].upper(), tc.colored(guess[i].upper(), "white", "on_green"))
                             elif guess[i] in word2:
