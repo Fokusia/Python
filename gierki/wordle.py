@@ -17,7 +17,14 @@ def wordBase():
     with open("slowa.txt", encoding="UTF-8") as file:
         words = file.read()
         wordsChecked = words.split()
-        return wordsChecked
+    with open("frekwencja.txt", encoding="UTF-8") as f:
+        words2 = f.readlines()
+        wordsChecked2 = []
+        for i in words2:
+            i = i.split(";")[0].lower()
+            wordsChecked2.append(i)
+    wordsChecked.extend(wordsChecked2)
+    return wordsChecked
 
 #Opcje oraz objaśnienie gry:
 #Dodanie kolorów.
@@ -30,7 +37,7 @@ symbolsToUseCopy = symbolsToUse.copy()
 #Wyrazy do użycia, randomowe słowo jak i zmienna kopiująca wyraz po to aby został on nienaruszony.
 #W późniejszym kodzie zmienna word zostaje lekko modyfikowana.
 wordsToUse = wordBase()
-word = getRandomWord()
+word = getRandomWord().lower()
 word2 = word
 
 #Pozostałe opcje tabeli, klawiatury, prób oraz zgadnięcia słowa.
